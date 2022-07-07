@@ -7,7 +7,10 @@
 #       detect silence and stop recording automatically (split sink / record into different services)
 
 # CONFIG
-source /etc/audio-teleport
+if [ ! -f ~/.config/audio ]; then
+	cp /etc/audio-teleport ~/.config/audio-teleport
+fi
+source ~/.config/audio-teleport
 
 function create-null-sink(){
   pactl list short modules | awk '$2 == "module-null-sink" {print $3}' | grep -q ${SINK}

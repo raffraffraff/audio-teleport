@@ -1,0 +1,13 @@
+[Unit]
+Description=Audio Teleport Listener
+Requires=audio-teleport-listener.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/audio-teleport-listener
+StandardInput=socket
+StandardError=journal
+User=pi
+
+[Install]
+WantedBy=multi-user.target
