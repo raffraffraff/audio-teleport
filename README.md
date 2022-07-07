@@ -15,9 +15,9 @@ After trying various methods to stream audio to a Raspberry Pi connected to my h
 3. Latency: as close to zero latency as possible, without compromising #1 or #2
 
 ## Result
-Consistency is 100% so far
-Quality is perfect (lossless compression)
-Latency is "not bad". Right now, it ranges from <1s to 6s. 
+- Consistency is 100% so far
+- Quality is perfect (lossless compression)
+- Latency is "OK" (ranges from 1-6 seconds)
 
 ## TODO
 1. Create a simple GUI to start/stop the client, configure it etc
@@ -26,6 +26,7 @@ Latency is "not bad". Right now, it ranges from <1s to 6s.
    - record 1s low-quality sample, test it for silence using ffmpeg
    - if it detects silence, increment counter, else reset to 0
    - if counter reaches X, stop the client
+4. Figure out the best way to run the capture with higher priority (rt if possible)
 
 # Nitty gritty
 ## Recording
