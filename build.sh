@@ -7,7 +7,7 @@ for output_type in deb rpm; do
 	echo "Build ${output_type}..."
 	fpm \
 		--name audio-teleport \
-		--description "Create a PulseAudio playback device, capture its output and stream it to a remote host using flac and mbuffer"
+		--description "Create a PulseAudio playback device, capture its output and stream it to a remote host using flac and mbuffer" \
 		--depends mpv \
 		--depends mbuffer  \
 		--input-type tar \
