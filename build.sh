@@ -15,6 +15,7 @@ for output_type in deb rpm; do
 		--after-install scripts/post-install.sh \
 		--before-remove scripts/pre-uninstall.sh \
 		--after-remove scripts/post-uninstall.sh \
+		-a all \
 		source.tgz
 done
 
