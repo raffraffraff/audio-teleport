@@ -28,9 +28,9 @@ jobs:
       # Install fpm
       - name: Install build deps
         run: |
-          apt-get update
-          apt-get install -y ruby-rubygems librpmbuild9
-          gem install fpm
+          sudo apt-get update
+          sudo apt-get install -y ruby-rubygems librpmbuild9
+          sudo gem install fpm
 
       # Build packages
       - name: Build packages
