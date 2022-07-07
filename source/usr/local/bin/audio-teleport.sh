@@ -7,9 +7,7 @@
 #       detect silence and stop recording automatically (split sink / record into different services)
 
 # CONFIG
-HOST=raspberrypi
-PORT=12345
-SINK=PI
+source /etc/audio-teleport
 
 function create-null-sink(){
   pactl list short modules | awk '$2 == "module-null-sink" {print $3}' | grep -q ${SINK}
