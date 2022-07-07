@@ -5,7 +5,7 @@ Simple client/server for sending audio from one (Linux) host to another.
 1. Run the build.sh
 2. Install package on client and server
 3. Edit /etc/audio-teleport on the client and set the server details
-4. Run audio-teleport.sh on the client
+4. Run `audio-teleport` on the client, and sound should get played on the server!
 
 ## How does it work?
 ### Client side
