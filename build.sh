@@ -5,7 +5,7 @@ tar czf source.tgz -C source/ usr etc
 
 for output_type in deb rpm; do
 	echo "Build ${output_type}..."
-	fpm.ruby3.1 \
+	fpm \
 		--name audio-teleport \
 		--description "Create a PulseAudio playback device, capture its output and stream it to a remote host using flac and mbuffer"
 		--depends mpv \
