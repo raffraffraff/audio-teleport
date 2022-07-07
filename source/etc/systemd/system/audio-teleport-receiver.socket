@@ -2,8 +2,7 @@
 Description=Audio Teleport Receiver Socket
 
 [Socket]
-EnvironmentFile=/etc/audio-teleport-receiver
-ListenStream=0.0.0.0:${PORT}
+ListenStream=0.0.0.0:12345
 Accept=yes
 
 [Install]
