@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# TODO: Turn this into a Systemd service that runs as a user
+#       use either 'notify' or 'simple' to avoid having to use PIDFile
+#       allow user to start/stop the service
+#       handle shutdown, remove sinks
+#       detect silence and stop recording automatically (split sink / record into different services)
+
+# CONFIG
+HOST=raspberrypi
+PORT=12345
+SINK=PI
+
+function create-null-sink(){
+  pactl list short modules | awk '$2 == "module-null-sink" {print $3}' | grep -q ${SINK}
+  if [ $? -ne 0 ]; then
+    echo "Loading PulseAudio module-null-sink for ${SINK}"
+    pactl load-module module-null-sink sink_name=${SINK} sink_properties=device.description="${SINK}"
+  fi
+}
+
+function create-loopback(){
+  pactl list short modules | awk '$2 == "module-loopback" {print $3}' | grep -q "${SINK}"
+  if [ $? -ne 0 ]; then
+    echo "Loading PulseAudio module-loopback for ${SINK}"
+    pactl load-module module-loopback sink=${SINK}
+  fi
+}
+
+function set-default-sink(){
+  pactl info | awk '/Default Sink:/ {print $NF}' | grep -q ${SINK}
+  if [ $? -ne 0 ]; then
+    echo "Setting ${SINK} as the default PulseAudio sink"
+    pactl set-default-sink ${SINK}
+  fi
+}
+
+function capture(){
+  parec \
+	--latency-msec=30 \
+	-d ${SINK}.monitor \
+	--raw \
+	--rate 48000
+}
+
+function flac_encode(){
+  flac \
+	-4 \
+	--channels=2 \
+	--sample-rate=48000 \
+	--bps=16 \
+	--padding=0 \
+	--endian=little \
+	--sign=signed \
+	--silent \
+       	- -
+}
+
+function stream(){
+  nc ${HOST} ${PORT}
+}
+
+# SETUP
+create-null-sink
+create-loopback
+set-default-sink
+
+# DO IT
+capture | flac_encode | stream

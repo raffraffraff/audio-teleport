@@ -1,0 +1,10 @@
+[Unit]
+Description=Audio Teleport Receiver Socket
+
+[Socket]
+EnvironmentFile=/etc/audio-teleport-receiver
+ListenStream=0.0.0.0:${PORT}
+Accept=yes
+
+[Install]
+WantedBy=sockets.target

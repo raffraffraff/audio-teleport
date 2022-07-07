@@ -1,0 +1,14 @@
+[Unit]
+Description=Audio Teleport Receiver
+Requires=audio-teleport-receiver.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/audio-teleport-receiver %i
+StandardInput=socket
+StandardError=journal
+User=pi
+EnvironmentFile=/etc/audio-teleport-receiver
+
+[Install]
+WantedBy=multi-user.target
