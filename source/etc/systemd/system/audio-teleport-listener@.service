@@ -7,7 +7,7 @@ Type=simple
 ExecStart=/usr/local/bin/audio-teleport-listener
 StandardInput=socket
 StandardError=journal
-User=pi
+User=1000
 
 [Install]
 WantedBy=multi-user.target
