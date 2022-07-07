@@ -2,8 +2,11 @@
 Simple client/server for sending audio from one (Linux) host to another.
 
 ## How does it work?
-Client side: creates a dummy Pulseaudio playback device (sink) and sets it as default. It then records audio, compresses it and streams it to the server.
-Server side: uses systemd socket activation to detect incoming audio and start a service to buffer it and play it.
+### Client side
+Creates a dummy Pulseaudio playback device (sink) and sets it as default. It then records audio, compresses it and streams it to the server.
+
+### Server side
+Uses systemd socket activation to detect incoming audio and start a service to buffer it and play it.
 
 ## Why?
 After trying various methods to stream audio to a Raspberry Pi connected to my home audio, I found a combination that worked consistently for me. My requirements, in order of importance, were:
