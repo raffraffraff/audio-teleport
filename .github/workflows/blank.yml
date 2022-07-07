@@ -35,6 +35,5 @@ jobs:
       # Build packages
       - name: Build packages
         run: |
-          apt-get update
-          apt-get install -y ruby-rubygems librpmbuild9
-          gem install fpm
+          cd $GITHUB_WORKSPACE
+          ./build.sh
