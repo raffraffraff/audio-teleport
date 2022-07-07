@@ -7,4 +7,4 @@ fi
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/${UID}/bus
 export DISPLAY=:0.0
 
-mbuffer -i - -s 4k -m 64k | mpv --no-video --profile=low-latency --no-cache --untimed -
+mbuffer -i - -s 4k -m 64k | mpv --no-video --profile=low-latency --no-cache --untimed --really-quiet -
