@@ -1,14 +1,19 @@
 #!/bin/bash
 
-# TODO: Turn this into a Systemd service that runs as a user
-#       use either 'notify' or 'simple' to avoid having to use PIDFile
-#       allow user to start/stop the service
-#       handle shutdown, remove sinks
-#       detect silence and stop recording automatically (split sink / record into different services)
+# TODO: Turn this into a UI + notification. It should provide the following function:
+#       1. Split out the parec | flac | nc and put them in another user script + systemd user unit
+#       2. Enable/disable listener (systemctl --user enable/disable audio-teleport.socket)
+#       2. Enable/disable sender (systemctl --user enable/disable audio-teleport-stream)
+#       3. Provide a way to configure the client and server
+#       4. Add dumb-dumb watcher that samples low-quality audio every few seconds and disables
+#          the sender after a configurable idle period.
 
 # CONFIG
 if [ ! -f ~/.config/audio ]; then
-	cp /etc/audio-teleport ~/.config/audio-teleport
+	cat <<-EOF
+	HOST=raspberrypi
+	PORT=12345
+	EOF
 fi
 source ~/.config/audio-teleport
 

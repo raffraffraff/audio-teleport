@@ -1,5 +1,0 @@
-# Note: If you change the port, make sure you update it on the server
-#       side too, /etc/systemd/system/audio-teleport-listener.socket
-HOST=raspberrypi
-PORT=12345
-SINK=PI

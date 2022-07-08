@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Audio Teleport
+Comment=Client server system for streaming audio from one host to another
+Exec=audio-teleport
+Terminal=false
+Type=Application
